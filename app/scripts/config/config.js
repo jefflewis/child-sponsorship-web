@@ -7,3 +7,11 @@ config.development = {
 		url: 'http://localhost:5000/api/v1'
 	}
 };
+
+config.production = {
+	app: 'child-sponsorship-web',
+
+	api: {
+		url: 'http://child-sponsorship-api.herokuapp.com/api/v1'
+	}
+};
