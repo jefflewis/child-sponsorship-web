@@ -25,7 +25,7 @@ angular.module('childSponsorshipWebApp')
     checkCredentials: function(email, password) {
       console.log(email)
       console.log(password)
-      apiService.post( '/tokens', { email: email, password: password } )
+      apiService.post( '/login', { email: email, password: password } )
       .success( function(data, status, headers, config) {
         localStorage.setItem('api-token', data.token);
         apiService.get('/user')
@@ -46,7 +46,7 @@ angular.module('childSponsorshipWebApp')
       return !! this.email();
     },
     logOut: function() {
-      apiService.delete('/tokens');
+      apiService.delete('/login');
       localStorage.removeItem('email');
       localStorage.removeItem('access');
       localStorage.removeItem('api-token');
