@@ -10,7 +10,8 @@
 angular.module('childSponsorshipWebApp')
   .factory('apiService', function($http) {
 
-  var API_LOCATION = 'http://localhost:5000/api/v1';
+  // var API_LOCATION = 'http://localhost:5000/api/v1';
+  var API_LOCATION = window.location.host = 'child-sponsorship-web.herokuapp.com' ? config.production.api.url : config.development.api.url;
 
   var apiService = {
     token: function() {
