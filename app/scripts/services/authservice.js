@@ -11,21 +11,8 @@
 angular.module('childSponsorshipWebApp')
   .factory('authService', ['$window', '$location', 'apiService', function($window, $location, apiService) {
 
-  return {
-    routeIsAccessible: function(accessRequired) {
-      if( accessRequired === undefined || accessRequired == null || accessRequired == 0 ) {
-        return true;
-      } else {
-        return(
-          localStorage.getItem('access') !== undefined &&
-          localStorage.getItem('access') >= accessRequired
-        );
-      }
-    },
-    checkCredentials: function(email, password) {
-      console.log(email)
-      console.log(password)
-      apiService.post( '/login', { email: email, password: password } )
+    function authenticate(path, email, password) {
+      apiService.post( path, { email: email, password: password } )
       .success( function(data, status, headers, config) {
         localStorage.setItem('api-token', data.token);
         apiService.get('/user')
@@ -38,6 +25,24 @@ angular.module('childSponsorshipWebApp')
       .error( function(data, status) {
         alert('error: ' + status);
       });
+    }
+
+  return {
+    routeIsAccessible: function(accessRequired) {
+      if( accessRequired === undefined || accessRequired == null || accessRequired == 0 ) {
+        return true;
+      } else {
+        return(
+          localStorage.getItem('access') !== undefined &&
+          localStorage.getItem('access') >= accessRequired
+        );
+      }
+    },
+    checkCredentials: function(email, password) {
+      authenticate('/login', email, password);
+    },
+    signup: function(email, password) {
+      authenticate('/signup', email, password);
     },
     email: function() {
       return localStorage.getItem('email');

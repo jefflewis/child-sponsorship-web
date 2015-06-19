@@ -26,13 +26,13 @@ angular
       accessRequired: null,
       title: 'Child Sponsorship'
     })
-    .when('/auth/login', {
+    .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl',
       accessRequired: null,
       title: 'Child Sponsorship - Login'
     })
-    .when('/auth/logout', {
+    .when('/logout', {
       template: '',
       controller: 'LogoutCtrl',
       accessRequired: 1,
@@ -58,6 +58,7 @@ angular
     })
     .otherwise({
       redirectTo: '/signup',
+      controller: 'SignupCtrl',
       accessRequired: null,
       title: 'Child Sponsorship'
     });
