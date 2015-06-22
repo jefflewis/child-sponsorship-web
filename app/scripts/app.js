@@ -39,7 +39,7 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('children', {
       url: '/children',
-      templateUrl: 'partials/child/index.html',
+      templateUrl: 'views/child/index.html',
       controller: 'ChildrenListController',
       resolve: {
         childrenResource: 'Child',
@@ -50,22 +50,22 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('viewChild', {
       url: '/children/:id/view',
-      templateUrl: 'partials/child/view.html',
+      templateUrl: 'views/child/view.html',
       controller: 'ChildrenViewController'
     })
     .state('newChild', {
       url: '/children/new',
-      tempalteUrl: 'partials/child/new.html',
+      tempalteUrl: 'views/child/new.html',
       controller: 'ChildrenCreateController'
     })
     .state('editChild', {
       url: '/children/:id/edit',
-      templateUrl: 'partials/child/edit.html',
+      templateUrl: 'views/child/edit.html',
       controller: 'ChildrenEditController'
     })
     .state('users', {
       url: '/users',
-      templateUrl: 'partials/user/index.html',
+    templateUrl: 'views/user/index.html',
       controller: 'UsersListController',
       resolve: {
         usersResource: 'User',
@@ -76,17 +76,17 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('viewUser', {
       url: '/users/:id/view',
-      templateUrl: 'partials/user/view.html',
+      templateUrl: 'views/user/view.html',
       controller: 'UsersViewController'
     })
     .state('newUser', {
       url: '/users/new',
-      tempalteUrl: 'partials/user/new.html',
+      tempalteUrl: 'views/user/new.html',
       controller: 'UsersCreateController'
     })
     .state('editUser', {
       url: '/users/:id/edit',
-      templateUrl: 'partials/user/edit.html',
+      templateUrl: 'views/user/edit.html',
       controller: 'UsersEditController'
     });
 })
