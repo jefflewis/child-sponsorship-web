@@ -7,7 +7,7 @@ angular.module('childSponsorshipWebApp')
       config.production.api.url : config.development.api.url;
     return $resource(API_LOCATION + '/children/:id', { id: '@id', token: localStorage.getItem('api-token')}, {
       update: {
-        method: 'PUT'
+        method: 'POST'
       }
     });
   });
