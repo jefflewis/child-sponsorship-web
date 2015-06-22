@@ -1,44 +1,41 @@
-// 'use strict';
-// 
-// /**
-//  * @ngdoc function
-//  * @name childSponsorshipWebApp.controller:MainCtrl
-//  * @description
-//  * # LoginCtrl
-//  * Controller of the childSponsorshipWebApp
-//  */
-// angular.module('childSponsorshipWebApp')
-//   .controller('LoginCtrl', function ($scope, $location, $cookieStore, authService, apiService) {
-// 
-//     $scope.invalid = false;
-// 
-//     $scope.login = function() {
-//       if (this.email === undefined || this.password === undefined) {
-//         $scope.invalid = true;
-//         return;
-//       }
-// 
-//       $scope.login = function() {
-//         var credentials = {
-//           email: this.email,
-//           token:    this.token
-//         };
-// 
-//         var success = function(data) {
-//           var token = data.token;
-// 
-//           api.init(token);
-// 
-//           $cookieStore.put('token', token);
-//           $location.path('/');
-//         };
-// 
-//         var error = function(){
-//           // TODO: Apply user notification here.
-//         };
-// 
-//       authorization.login(credentials).success(success).error(error);
-// 
-//       };
-//     };
-//   });
+'use strict';
+
+angular.module('childSponsorshipWebApp')
+  .controller('LoginController', function($scope, $state, $rootElement, authService) {
+
+  $scope.authenticate = function() {
+    authService.login($scope.email, $scope.password);
+  };
+
+  /* Handle browser autofill of login form */
+  window.setTimeout( function() {
+    $rootElement.find('input').checkAndTriggerAutoFillEvent();
+  }, 200);
+
+  $scope.$root.$on('login.success', function() {
+    $state.go('home');
+  });
+
+  $scope.toastPosition = {
+    bottom: true,
+    top: false,
+    left: false,
+    right: false
+  };
+
+  $scope.getToastPosition = function() {
+  return Object.keys($scope.toastPosition)
+    .filter(function(pos) { return $scope.toastPosition[pos]; })
+    .join(' ');
+  };
+
+  $scope.showSimpleToast = function() {
+    $mdToast.show(
+      $mdToast.simple()
+      .content('')
+      .position($scope.getToastPosition())
+      .hideDelay(0)
+    );
+  };
+
+});

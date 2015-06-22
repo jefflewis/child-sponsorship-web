@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" ng-click-"home()">Child Sponsorship</a>
+    </div>
+    <!-- Links -->
+    <div class="nav navbar-left">
+      <ul class="nav navbar-nav">
+        <li ng-show="isLoggedIn"><a href="#" ng-click="sponsor()">Sponsor a Child</a></li>
+        <li ng-show="isLoggedIn">
+          <a href="/#/children/">My Kids</a>
+        </li>
+      </ul>
+    </div>
+    <!-- User Menu -->
+    <div class="nav navbar-right" ng-show="!isLoggedIn">
+      <a href="/#/signup" class="btn btn-default navbar-btn" style="margin-right:10px;">Sign Up</a>
+      <a href="/#/login" class="btn btn-primary navbar-btn" style="margin-right:10px;">Login</a>
+    </div>
+    <!-- User Menu -->
+    <div class="nav navbar-right" ng-show="isLoggedIn">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <img gravatar-src="user.email" gravatar-size="50">
+        </li>
+        <li>
+          <a href="" class="dropdown-toggle user-menu" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/#/users/{{user.id}}/view">Dashboard</a></li>
+            <li><a href="#" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

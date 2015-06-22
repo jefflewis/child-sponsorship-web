@@ -9,26 +9,28 @@
  */
 
 angular.module('childSponsorshipWebApp')
-  .factory('authService', ['$window', '$location', 'apiService', function($window, $location, apiService) {
+  .factory('authService', function ($rootScope, $location, $q, apiService) {
 
-    function authenticate(path, email, password) {
+    var authenticate = function(path, email, password) {
       apiService.post( path, { email: email, password: password } )
-      .success( function(data, status, headers, config) {
+      .success( function (data, status, headers, config) {
         localStorage.setItem('api-token', data.token);
         apiService.get('/user')
-        .success( function(data, status, headers, config) {
-          localStorage.setItem('email', data.email);
-          localStorage.setItem('access', data.access);
-          $location.path(localStorage.getItem('post-login-path') || '/home').replace();
+        .success( function (data, status, headers, config) {
+          user = data;
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('access', user.access);
+          // $location.path(localStorage.getItem('post-login-path') || '/home').replace();
+          $rootScope.$broadcast("login.success");
         });
       })
       .error( function(data, status) {
         alert('error: ' + status);
+        $rootScope.$broadcast("login.failed", error);
       });
-    }
+    };
 
-  return {
-    routeIsAccessible: function(accessRequired) {
+    var routeIsAccessible = function() {
       if( accessRequired === undefined || accessRequired == null || accessRequired == 0 ) {
         return true;
       } else {
@@ -37,24 +39,63 @@ angular.module('childSponsorshipWebApp')
           localStorage.getItem('access') >= accessRequired
         );
       }
-    },
-    checkCredentials: function(email, password) {
-      authenticate('/login', email, password);
-    },
-    signup: function(email, password) {
-      authenticate('/signup', email, password);
-    },
-    email: function() {
-      return localStorage.getItem('email');
-    },
-    loggedIn: function() {
-      return !! this.email();
-    },
-    logOut: function() {
-      apiService.delete('/login');
+    };
+
+    var user;
+
+    var logout = function() {
+      apiService.get('/logout');
       localStorage.removeItem('email');
+      localStorage.removeItem('name');
       localStorage.removeItem('access');
       localStorage.removeItem('api-token');
-    }
+      $rootScope.$broadcast("logout.success");
+    };
+
+    var login = function(email, password) {
+      authenticate('/login', email, password);
+    };
+
+    var signup = function(email, password) {
+      authenticate('/signup', email, password).then(function () {
+        $rootScope.$broadcast("login.success");
+      }, function (error) {
+        $rootScope.$broadcast("login.failed", error);
+      })
+    };
+
+    var email = function() {
+      return localStorage.getItem('email');
+    };
+
+    var isLoggedIn = function() {
+      return !! email();
+    };
+
+    var isAuthorized = function() {
+      if (isLoggedIn()) { return true; }
+      return $q.reject('Not Authorized');
+    };
+
+    var currentUser = function() {
+      if (user == undefined) {
+        apiService.get('/user')
+        .success(function (data, status, headers, config) {
+          user = data;
+          $rootScope.$broadcast("user.success");
+        });
+      }
+      return user;
+    };
+
+  return {
+    routeIsAccessible: routeIsAccessible,
+    login: login,
+    signup: signup,
+    email: email,
+    isLoggedIn: isLoggedIn,
+    logout: logout,
+    isAuthorized: isAuthorized,
+    currentUser: currentUser
   };
-}]);
+});

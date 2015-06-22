@@ -2,6 +2,6 @@
 
 angular.module('childSponsorshipWebApp')
   .controller('LogoutCtrl', function($scope, $location, authService) {
-  authService.logOut();
+  authService.logout();
   $location.path('/').replace();
 });

@@ -1,29 +1,3 @@
-<div class="center jumbotron">
-  <h2>This is the home page for the <br/>Child Sponsorship App</h2>
-  <a href="/#/signup" class="btn btn-lg btn-primary">Sign up now!</a>
-</div>
-
-<div>
-  <a href="/#/home">home</a>
-  The home page is only accessible when logged in.  If the user is not logged in
-  yet, it redirects to the login page.
-</div>
-
-<div>
-  <a href="/#/admin">admin</a>
-  Must have admin access to see this page.
-</div>
-
-<div ng-if="! loggedIn">
-  <a href="/#/auth/login">login</a>
-  If the user was denied access to a page due to not being logged in yet,
-  after successful login, the user is taken to that page automatically.
-</div>
-<div ng-if="loggedIn">
-  <a href="/#/auth/logout">logout</a>
-</div>
-
-<div>
-  <strong>Data only users can see:</strong> {{userData}}<br/>
-  <strong>Data only admins can see:</strong> {{adminData}}
+<div class="center jumbotron" ng-show="isLoggedIn">
+  <h2>Welcome, {{user.name}}</h2>
 </div>

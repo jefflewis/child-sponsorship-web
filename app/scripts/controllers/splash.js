@@ -1,17 +1,16 @@
 'use strict';
 
 angular.module('childSponsorshipWebApp')
-  .controller('SplashCtrl', function($scope, apiService, authService) {
+  .controller('SplashController', function($scope, apiService, authService) {
+  
+  $scope.$on('login.success', function() {
+    $scope.isLoggedIn = authService.isLoggedIn();
+    $scope.user = authService.currentUser();
+  });
 
-  $scope.loggedIn = authService.loggedIn();
-
-  apiService.get('/data-only-users-can-see')
-  .success( function(data, status) {
-    $scope.userData = data.data;
-  } );
-
-  apiService.get('/data-only-admins-can-see')
-  .success( function(data, status) {
-    $scope.adminData = data.data;
-  } );
+  // Login success
+  $scope.$on("user.success", function() {
+    $scope.isLoggedIn = authService.isLoggedIn();
+    $scope.user = authService.currentUser();
+  });
 });
