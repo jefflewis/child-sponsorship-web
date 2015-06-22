@@ -1,16 +1,26 @@
 <a ui-sref="newChild" class="btn-primary btn-lg nodecoration">Add New Child</a>
 
-<table class="table childtable">
-  <tr>
-    <td><h3>All Children</h3></td>
-    <td></td>
-  </tr>
-  <tr ng-repeat="child in children">
-    <td>{{child.name}}</td>
-    <td>{{child.description}}</td>
-    <td>
-      <a class="btn btn-primary" ui-sref="viewChild({id:child.id})">View</a>
-      <a class="btn btn-danger"  ng-click="deleteChild(child)">Delete</a>
-    </td>
-  </tr>
+<table id="childrentable" class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <td><h3>All Children</h3></td>
+    </tr>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>User ID</strong></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="child in children">
+      <td>{{child.name}}</td>
+      <td>{{child.description}}</td>
+      <td>{{child.user_id}}</td>
+      <td>
+        <a class="btn btn-primary" ui-sref="viewChild({id:child.id})">View</a>
+        <a class="btn btn-danger"  ng-click="deleteChild(child)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
 </table>

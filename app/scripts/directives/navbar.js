@@ -16,6 +16,14 @@ angular.module('childSponsorshipWebApp')
       },
       controller: function($scope, $state, authService) {
 
+        var admin = function () {
+          console.log($scope.user.access)
+          if ($scope.user.access >= 10) {
+            return true;
+          }
+          return false;
+        }
+
         $scope.$on('$viewContentLoaded', function() {
           $scope.isLoggedIn = authService.isLoggedIn();
           $scope.user = authService.currentUser();
@@ -42,14 +50,18 @@ angular.module('childSponsorshipWebApp')
         $scope.logout = function() {
           authService.logout();
         };
-        
-        $scope.sponsor = function () {
+
+        $scope.children = function () {
           $state.go('children');
-        }
-        
+        };
+
         $scope.home = function () {
           $state.go('home');
-        }
+        };
+
+        $scope.users = function () {
+          $state.go('users');
+        };
       }
     };
   });
