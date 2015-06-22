@@ -29,7 +29,7 @@ angular.module('childSponsorshipWebApp')
   })
   .controller('ChildrenEditController', function ($scope, $state, $stateParams, Child) {
     $scope.updateChild = function() { //Update the edited child. Issues a PUT to /api/children/:id
-      $scope.child.$update(function() {
+      $scope.child.$save(function() {
         $state.go('children'); // on success go back to home i.e. children state.
       });
     };
