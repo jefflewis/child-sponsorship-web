@@ -72,6 +72,13 @@ angular.module('childSponsorshipWebApp')
       return !! email();
     };
 
+    var isAdmin = function() {
+      if (localStorage.getItem('access') > 5) {
+        return true;
+      }
+      return false;
+    };
+
     var isAuthorized = function() {
       if (isLoggedIn()) { return true; }
       return $q.reject('Not Authorized');
@@ -90,12 +97,13 @@ angular.module('childSponsorshipWebApp')
 
   return {
     routeIsAccessible: routeIsAccessible,
-    login: login,
-    signup: signup,
-    email: email,
-    isLoggedIn: isLoggedIn,
-    logout: logout,
+    login:        login,
+    signup:       signup,
+    email:        email,
+    isLoggedIn:   isLoggedIn,
+    isAdmin:      isAdmin,
+    logout:       logout,
     isAuthorized: isAuthorized,
-    currentUser: currentUser
+    currentUser:  currentUser
   };
 });

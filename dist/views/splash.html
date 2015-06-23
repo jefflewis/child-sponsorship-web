@@ -1,3 +1,10 @@
+<!-- Logged in -->
 <div class="center jumbotron" ng-show="isLoggedIn">
   <h2>Welcome, {{user.name}}</h2>
+</div>
+
+<!-- Not Logged in -->
+<div class="center jumbotron" ng-show="!isLoggedIn">
+  <h2>Welcome to the Child Sponsorship App</h2>
+  <a href="/#/signup" class="btn btn-primary" style="margin-right:10px;">Sign up now!</a>
 </div>

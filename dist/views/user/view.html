@@ -17,3 +17,28 @@
 <div>
   <a class="btn btn-primary" ui-sref="editUser({id:user.id})">Edit</a>
 </div>
+
+
+
+<table id="childrentable" class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <td><h3>My Children</h3></td>
+    </tr>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Description</strong></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="child in user.children">
+      <td>{{child.name}}</td>
+      <td>{{child.description}}</td>
+      <td>
+        <a class="btn btn-primary" ui-sref="viewChild({id:child.id})">View</a>
+        <a class="btn btn-danger"  ng-click="deleteChild(child)">Remove</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

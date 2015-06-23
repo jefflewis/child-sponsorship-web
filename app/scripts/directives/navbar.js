@@ -26,25 +26,30 @@ angular.module('childSponsorshipWebApp')
 
         $scope.$on('$viewContentLoaded', function() {
           $scope.isLoggedIn = authService.isLoggedIn();
+          $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
         });
 
         // Login success
         $scope.$on("user.success", function() {
           $scope.isLoggedIn = authService.isLoggedIn();
+          $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
         });
 
         // Login success
         $scope.$on("login.success", function() {
           $scope.isLoggedIn = authService.isLoggedIn();
+          $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
         });
 
         // Logout success
         $scope.$on("logout.success", function() {
           $scope.isLoggedIn = authService.isLoggedIn();
+          $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
+          $state.go('home');
         });
 
         $scope.logout = function() {
@@ -54,6 +59,10 @@ angular.module('childSponsorshipWebApp')
         $scope.children = function () {
           $state.go('children');
         };
+        
+        $scope.sponsor = function () {
+          $state.go('sponsorChild');
+        };
 
         $scope.home = function () {
           $state.go('home');
@@ -62,6 +71,10 @@ angular.module('childSponsorshipWebApp')
         $scope.users = function () {
           $state.go('users');
         };
+        
+        $scope.userChildren =function () {
+          $state.go('userChildren')
+        }
       }
     };
   });

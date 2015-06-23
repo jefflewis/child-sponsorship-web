@@ -6,9 +6,8 @@
     <!-- Links -->
     <div class="nav navbar-left">
       <ul class="nav navbar-nav">
-        <li ng-show="isLoggedIn"><a href="#" ng-click="children()">Sponsor a Child</a></li>
-        <li ng-show="isLoggedIn"><a href="/#/children/">My Kids</a></li>
-        <li ng-show="isLoggedIn"><a href="#" ng-click="users()">Users</a></li>
+        <li ng-show="isLoggedIn"><a href="#" ng-click="sponsor()">Sponsor a Child</a></li>
+        <li ng-show="isLoggedIn"><a href="/#/users/{{user.id}}/children/view">My Kids</a></li>
       </ul>
     </div>
     <!-- User Menu -->
@@ -26,6 +25,8 @@
           <a href="" class="dropdown-toggle user-menu" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/#/users/{{user.id}}/view">Dashboard</a></li>
+            <li ng-show="isAdmin"><a href="#" ng-click="users()">Users</a></li>
+            <li ng-show="isAdmin"><a href="#" ng-click="children()">Children</a></li>
             <li><a href="#" ng-click="logout()">Logout</a></li>
           </ul>
         </li>

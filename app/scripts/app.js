@@ -27,15 +27,20 @@ angular.module('childSponsorshipWebApp', [
 
   // Now set up the states
   $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/splash.html',
+      controller: 'SplashController'
+    })
     .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
       controller: 'LoginController'
     })
-    .state('home', {
-      url: '/',
-      templateUrl: 'views/splash.html',
-      controller: 'SplashController'
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'views/signup.html',
+      controller: 'SignupController'
     })
     .state('children', {
       url: '/children',
@@ -63,6 +68,11 @@ angular.module('childSponsorshipWebApp', [
       templateUrl: 'views/child/edit.html',
       controller: 'ChildrenEditController'
     })
+    .state('sponsorChild', {
+      url: '/sponsor',
+      templateUrl: 'views/child/sponsor.html',
+      controller: 'ChildrenSponsorContoller'
+    })
     .state('users', {
       url: '/users',
     templateUrl: 'views/user/index.html',
@@ -88,8 +98,13 @@ angular.module('childSponsorshipWebApp', [
       url: '/users/:id/edit',
       templateUrl: 'views/user/edit.html',
       controller: 'UsersEditController'
+    })
+    .state('userChildren', {
+      url: '/users/:id/children/view',
+      templateUrl: 'views/user/children.html',
+      controller: 'UsersChildrenController'
     });
 })
 .run(function ($state) {
-  $state.go('login');
+  $state.go('home');
 });

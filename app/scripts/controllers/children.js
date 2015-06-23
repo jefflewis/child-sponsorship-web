@@ -2,7 +2,8 @@
 
 angular.module('childSponsorshipWebApp')
   .controller('ChildrenListController', function ($scope, $state, popupService, $window, Child) {
-    $scope.children = Child.query(); //fetch all children. Issues a GET to /api/children
+    // Fetch all children. Issues a GET to /api/children
+    $scope.children = Child.query(); 
 
     $scope.deleteChild = function(child) { // Delete a child. Issues a DELETE to /children/:id
       if (popupService.showPopup('Really delete this?')) {
@@ -39,4 +40,15 @@ angular.module('childSponsorshipWebApp')
     };
 
     $scope.loadChild(); // Load a child which can be edited on UI
+  })
+  .controller('ChildrenSponsorContoller', function ($scope, $state, $stateParams, Child, apiService) {
+    // Fetch all available Children (with no user_id)
+    apiService.get('/children/available')
+    .success( function (data, status, headers, config) {
+      $scope.available = data;
+    })
+    .error( function(data, status) {
+      alert('error: ' + status);
+      $rootScope.$broadcast("children.available.failed", error);
+    });
   });

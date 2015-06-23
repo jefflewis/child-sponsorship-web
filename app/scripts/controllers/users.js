@@ -7,7 +7,8 @@ angular.module('childSponsorshipWebApp')
     $scope.deleteUser = function(user) { // Delete a user. Issues a DELETE to /users/:id
       if (popupService.showPopup('Really delete this?')) {
         user.$delete(function() {
-          $window.location.href = ''; //redirect to home
+          $rootScope.$broadcast("user.deleted");
+          $state.go('users');
         });
       }
     };
@@ -23,20 +24,25 @@ angular.module('childSponsorshipWebApp')
     $scope.addUser = function() { //create a new user. Issues a POST to /users
       $scope.user.$save(function() {
         // On success go back to home i.e. users state.
+        $rootScope.$broadcast("user.created");
         $state.go('users');
       });
     };
   })
   .controller('UsersEditController', function ($scope, $state, $stateParams, User) {
-    $scope.updateUser = function() { //Update the edited user. Issues a PUT to /api/users/:id
+    $scope.updateUser = function() { //Update the edited user. Issues a POST to /api/users/:id
       $scope.user.$save(function() {
-        $state.go('users'); // on success go back to home i.e. users state.
+        $rootScope.$broadcast("user.updated");
+        $state.go('users');
       });
     };
 
     $scope.loadUser = function() { //Issues a GET request to /api/users/:id to get a user to update
       $scope.user = User.get({ id: $stateParams.id });
-    };
+    };  
 
     $scope.loadUser(); // Load a user which can be edited on UI
+  })
+  .controller('UsersChildrenController', function ($scope, $state, $stateParams, User) {
+    $scope.user = User.get({ id: $stateParams.id });
   });

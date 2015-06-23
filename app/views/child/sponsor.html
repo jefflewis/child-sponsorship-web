@@ -1,0 +1,21 @@
+<table id="childrentable" class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <td><h3>Available Children</h3></td>
+    </tr>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><strong>Description</strong></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="child in available">
+      <td>{{child.name}}</td>
+      <td>{{child.description}}</td>
+      <td>
+        <a class="btn btn-primary" ui-sref="sponsorChild({id:child.id})">Sponsor</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
