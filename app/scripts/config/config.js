@@ -12,6 +12,6 @@ config.production = {
 	app: 'child-sponsorship-web',
 
 	api: {
-		url: 'http://child-sponsorship-api.herokuapp.com/api/v1'
+		url: 'https://child-sponsorship-api.herokuapp.com/api/v1'
 	}
 };
