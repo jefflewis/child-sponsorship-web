@@ -17,7 +17,7 @@ angular.module('childSponsorshipWebApp')
     //Get a single user. Issues a GET to /users/:id
     $scope.user = User.get({ id: $stateParams.id });
   })
-  .controller('UsersCreateController', function ($scope, $state, $stateParams, User) {
+  .controller('UsersCreateController', function ($scope, $rootScope, $state, $stateParams, User) {
     //create new user instance. Properties will be set via ng-model on UI
     $scope.user = new User();
 
@@ -29,7 +29,7 @@ angular.module('childSponsorshipWebApp')
       });
     };
   })
-  .controller('UsersEditController', function ($scope, $state, $stateParams, User) {
+  .controller('UsersEditController', function ($scope, $rootScope, $state, $stateParams, User) {
     $scope.updateUser = function() { //Update the edited user. Issues a POST to /api/users/:id
       $scope.user.$save(function() {
         $rootScope.$broadcast("user.updated");
