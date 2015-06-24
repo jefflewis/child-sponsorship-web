@@ -1,25 +1,4 @@
-<div class="row">
-  <div class="col s6 m6" ng-repeat="child in user.children">
-    <div class="card medium">
-      <div class="card-image">
-        <img src="{{child.image}}">
-        <span class="card-title">{{child.name}}</span>
-      </div>
-      <div class="card-content">
-        <p>{{child.description}}</p>
-      </div>
-      <div class="card-action">
-        <a class="" ui-sref="viewChild({id:child.id})">View</a>
-        <a class="" ng-click="deleteChild(child)">Remove</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<!-- <table id="childrentable" class="table table-hover table-responsive">
+<div class="row"> <div class="col s6 m6" ng-repeat="child in user.children"> <div class="card medium"> <div class="card-image"> <img src="{{child.image}}"> <span class="card-title">{{child.name}}</span> </div> <div class="card-content"> <p>{{child.description}}</p> </div> <div class="card-action"> <a class="" ui-sref="viewChild({id:child.id})">View</a> <a class="" ng-click="deleteChild(child)">Remove</a> </div> </div> </div> </div> <!-- <table id="childrentable" class="table table-hover table-responsive">
   <thead>
     <tr>
       <td><h3>My Children</h3></td>
