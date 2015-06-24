@@ -1,6 +1,25 @@
-<a ui-sref="newChild" class="btn-primary btn-lg nodecoration">Add New Child</a>
+<!-- <a ui-sref="newChild" class="btn btn-primary">Add New Child</a> -->
+<a ui-sref="newChild" class="btn-floating btn-large waves-effect waves-light z-depth-3 margin-tb-md"><i class="material-icons">add</i></a>
 
-<table id="childrentable" class="table table-hover table-responsive">
+<div class="row">
+  <div class="col s6 m6 center" ng-repeat="child in children">
+    <div class="card medium">
+      <div class="card-image">
+        <img src="{{child.image}}">
+        <span class="card-title">{{child.name}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{child.description}}</p>
+      </div>
+      <div class="card-action">
+        <a class="" ui-sref="viewChild({id:child.id})">View</a>
+        <a class="" ng-click="deleteChild(child)">Remove</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <table id="childrentable" class="table table-hover table-responsive">
   <thead>
     <tr>
       <td><h3>All Children</h3></td>
@@ -23,4 +42,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->

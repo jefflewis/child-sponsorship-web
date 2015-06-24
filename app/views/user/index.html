@@ -1,9 +1,9 @@
-<a ui-sref="newUser" class="btn-primary btn-lg nodecoration">Add New User</a>
-
 <table id="usertable" class="table table-hover table-responsive">
   <thead>
     <tr>
-      <td><h3>All Users</h3></td>
+      <td><h3>Users</h3></td>
+      <td></td>
+      <td><a ui-sref="newUser" class="btn-floating btn-large waves-effect waves-light z-depth-3 margin-tb-md right"><i class="material-icons">add</i></a></td>
     </tr>
     <tr>
       <td><strong>Name</strong></td>
@@ -17,7 +17,7 @@
       <td>{{user.email}}</td>
       <td>
         <a class="btn btn-primary" ui-sref="viewUser({id:user.id})">View</a>
-        <a class="btn btn-danger"  ng-click="deleteUser(user)">Delete</a>
+        <a class="btn red"  ng-click="deleteUser(user)">Delete</a>
       </td>
     </tr>
   </tbody>

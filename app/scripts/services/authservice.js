@@ -24,7 +24,7 @@ angular.module('childSponsorshipWebApp')
           $rootScope.$broadcast("login.success");
         });
       })
-      .error( function(data, status) {
+      .error( function(data, status, error) {
         alert('error: ' + status);
         $rootScope.$broadcast("login.failed", error);
       });

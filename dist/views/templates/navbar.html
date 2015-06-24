@@ -1,36 +1,96 @@
-<nav class="navbar navbar-inverse" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#" ng-click-"home()">Child Sponsorship</a>
-    </div>
-    <!-- Links -->
-    <div class="nav navbar-left">
-      <ul class="nav navbar-nav">
-        <li ng-show="isLoggedIn"><a href="#" ng-click="sponsor()">Sponsor a Child</a></li>
-        <li ng-show="isLoggedIn"><a href="/#/users/{{user.id}}/children/view">My Kids</a></li>
-      </ul>
-    </div>
-    <!-- User Menu -->
-    <div class="nav navbar-right" ng-show="!isLoggedIn">
-      <a href="/#/signup" class="btn btn-default navbar-btn" style="margin-right:10px;">Sign Up</a>
-      <a href="/#/login" class="btn btn-primary navbar-btn" style="margin-right:10px;">Login</a>
-    </div>
-    <!-- User Menu -->
-    <div class="nav navbar-right" ng-show="isLoggedIn">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <img gravatar-src="user.email" gravatar-size="50">
-        </li>
-        <li>
-          <a href="" class="dropdown-toggle user-menu" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/#/users/{{user.id}}/view">Dashboard</a></li>
-            <li ng-show="isAdmin"><a href="#" ng-click="users()">Users</a></li>
-            <li ng-show="isAdmin"><a href="#" ng-click="children()">Children</a></li>
-            <li><a href="#" ng-click="logout()">Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="/#/" class="brand-logo">Child Sponsorship</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a ng-show="isLoggedIn" href="#" ng-click="sponsor()">Sponsor a Child</a></li>
+      <li><a ng-show="isLoggedIn" href="/#/users/{{user.id}}/children/view">My Kids</a></li>
+      <li><a href="/#/signup" ng-show="!isLoggedIn" class="btn btn-default z-depth-3" style="margin-right:10px;">Sign Up</a></li>
+      <li><a href="/#/login" ng-show="!isLoggedIn" class="btn btn-primary z-depth-3" style="margin-right:10px;">Login</a></li>
+      <li>
+        <a href="" ng-show="isLoggedIn" class="">{{user.email}}<span class="caret"></span></a>
+        <ul>
+          <li><a ng-show="isLoggedIn" href="/#/users/{{user.id}}/view">Dashboard</a></li>
+          <li ng-show="isAdmin"><a href="#" ng-click="users()">Users</a></li>
+          <li ng-show="isAdmin"><a href="#" ng-click="children()">Children</a></li>
+          <li class="divider"></li>
+          <li><a href="#" ng-click="logout()">Logout</a></li>
+        </ul>
+      </li>
+      <li><img ng-show="isLoggedIn" gravatar-src="user.email" gravatar-size="50"></li>
+    </ul>
   </div>
 </nav>
+            
+
+
+
+<!-- Dropdown Structure -->
+<!-- <ul id="userMenu" class="dropdown-content">
+
+</ul>
+
+
+<nav>
+  <div class="nav-wrapper" class="navbar">
+    <a href="#!" class="brand-logo">Child Sponsorship</a>
+    <ul class="right hide-on-med-and-down">
+
+      <li><a ng-show="isLoggedIn" href="#" ng-click="sponsor()">Sponsor a Child</a></li>
+      <li><a ng-show="isLoggedIn" href="/#/users/{{user.id}}/children/view">My Kids</a></li>
+
+      <li><a href="/#/signup" ng-show="!isLoggedIn" class="btn btn-default navbar-btn" style="margin-right:10px;">Sign Up</a></li>
+      <li><a href="/#/login" ng-show="!isLoggedIn" class="btn btn-primary navbar-btn" style="margin-right:10px;">Login</a></li>
+      <li>
+        <a href="" class="dropdown-toggle user-menu" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a>
+        <li><img gravatar-src="user.email" gravatar-size="50"></li>
+        <ul>
+          <li><a href="/#/users/{{user.id}}/view">Dashboard</a></li>
+          <li ng-show="isAdmin"><a href="#" ng-click="users()">Users</a></li>
+          <li ng-show="isAdmin"><a href="#" ng-click="children()">Children</a></li>
+          <li class="divider"></li>
+          <li><a href="#" ng-click="logout()">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+
+
+<!-- <nav class="navbar navbar-inverse" role="navigation"> -->
+  <!-- <div class="container"> -->
+    <!-- <div class="navbar-header"> -->
+      <!-- <a class="navbar-brand" href="/#/" ng-click-"home()">Child Sponsorship</a> -->
+    <!-- </div> -->
+    <!-- Links -->
+    <!-- <div class="nav navbar-left"> -->
+      <!-- <ul class="nav navbar-nav"> -->
+        <!-- <li ng-show="isLoggedIn"><a href="#" ng-click="sponsor()">Sponsor a Child</a></li> -->
+        <!-- <li ng-show="isLoggedIn"><a href="/#/users/{{user.id}}/children/view">My Kids</a></li> -->
+      <!-- </ul> -->
+    <!-- </div> -->
+    <!-- User Menu -->
+    <!-- <div class="nav navbar-right" ng-show="!isLoggedIn"> -->
+      <!-- <a href="/#/signup" class="btn btn-default navbar-btn" style="margin-right:10px;">Sign Up</a> -->
+      <!-- <a href="/#/login" class="btn btn-primary navbar-btn" style="margin-right:10px;">Login</a> -->
+    <!-- </div> -->
+    <!-- User Menu -->
+    <!-- <div class="nav navbar-right" ng-show="isLoggedIn"> -->
+      <!-- <ul class="nav navbar-nav"> -->
+        <!-- <li class="dropdown"> -->
+          <!-- <img gravatar-src="user.email" gravatar-size="50"> -->
+        <!-- </li> -->
+        <!-- <li> -->
+          <!-- <a href="" class="dropdown-toggle user-menu" data-toggle="dropdown">{{user.email}}<span class="caret"></span></a> -->
+          <!-- <ul class="dropdown-menu" role="menu"> -->
+            <!-- <li><a href="/#/users/{{user.id}}/view">Dashboard</a></li> -->
+            <!-- <li ng-show="isAdmin"><a href="#" ng-click="users()">Users</a></li> -->
+            <!-- <li ng-show="isAdmin"><a href="#" ng-click="children()">Children</a></li> -->
+            <!-- <li><a href="#" ng-click="logout()">Logout</a></li> -->
+          <!-- </ul> -->
+        <!-- </li> -->
+      <!-- </ul> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </nav>/ -->

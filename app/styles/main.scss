@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "materialize/sass/materialize.scss";
 // endbower
 
 .browsehappy {
@@ -88,4 +89,67 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+
+nav {
+  ul {
+//    text-shadow:0 1px 0 #FFF;
+    list-style: none;
+//    margin: 0;
+//    padding: 0;
+  }
+  
+  li {
+//    margin: 0;
+//    padding: 0;
+    position: relative;
+    
+    :hover {
+      background-color: rgba(238, 110, 115, 0.9);
+    };
+    
+    ul {
+//      float: left;
+//      left: 0;
+//      opacity: 0;
+      position: absolute;
+      top: 55px;
+      visibility: hidden;
+//      z-index: 1;
+      -webkit-transition: all .25s ease;
+         -moz-transition: all .25s ease;
+          -ms-transition: all .25s ease;
+           -o-transition: all .25s ease;
+              transition: all .25s ease;
+    }
+  }
+  a {
+    background: #ee6e73;
+    color: #444;
+    display: block;
+    -webkit-transition: all .25s ease;
+       -moz-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+         -o-transition: all .25s ease;
+            transition: all .25s ease;
+  }
+}
+   
+   
+nav li:hover ul {
+    opacity: 1;
+//    top: 50px;
+    visibility: visible;
+}
+nav li ul li {
+    width: 100%;
+}
+nav li ul a:hover {
+  background-color: rgba(238, 110, 115, 0.9);
+}
+
+.margin-tb-md {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
