@@ -98,16 +98,16 @@ nav {
 //    margin: 0;
 //    padding: 0;
   }
-  
+
   li {
 //    margin: 0;
 //    padding: 0;
     position: relative;
-    
+
     :hover {
-      background-color: rgba(238, 110, 115, 0.9);
+      background-color: $primary-color;
     };
-    
+
     ul {
 //      float: left;
 //      left: 0;
@@ -124,7 +124,7 @@ nav {
     }
   }
   a {
-    background: #ee6e73;
+    background: $primary-color;
     color: #444;
     display: block;
     -webkit-transition: all .25s ease;
@@ -134,8 +134,8 @@ nav {
             transition: all .25s ease;
   }
 }
-   
-   
+
+
 nav li:hover ul {
     opacity: 1;
 //    top: 50px;
@@ -145,10 +145,30 @@ nav li ul li {
     width: 100%;
 }
 nav li ul a:hover {
-  background-color: rgba(238, 110, 115, 0.9);
+  background-color: $primary-color;
 }
 
 .margin-tb-md {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+  border: dotted 3px red;
+} /* Default class applied to drop zones on over */
+
+html, body { height: 100%; }
+
+canvas {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    box-shadow: 3px 3px 3px 0 #e3e3e3;
+    border: 1px solid #c3c3c3;
+    height: 100px;
+    margin: 6px 0 0 6px;
 }

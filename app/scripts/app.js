@@ -15,17 +15,19 @@ angular.module('childSponsorshipWebApp', [
   'ngSanitize',
   'ngTouch',
   'ui.router',
-  'ui.gravatar'
+  'ui.gravatar',
+  'ngFileUpload',
+  'angularFileUpload'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-  //Enable cross domain calls
+  // Enable cross domain calls
   $httpProvider.defaults.useXDomain = true;
 
-  //Remove the header used to identify ajax call  that would prevent CORS from working
+  // Remove the header used to identify ajax call that would prevent CORS from working
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-  // Now set up the states
+  // Set up states
   $stateProvider
     .state('home', {
       url: '/',
@@ -42,6 +44,7 @@ angular.module('childSponsorshipWebApp', [
       templateUrl: 'views/signup.html',
       controller: 'SignupController'
     })
+    // Children
     .state('children', {
       url: '/children',
       templateUrl: 'views/child/index.html',
@@ -60,7 +63,7 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('newChild', {
       url: '/children/new',
-      tempalteUrl: 'views/child/new.html',
+      templateUrl: 'views/child/new.html',
       controller: 'ChildrenCreateController'
     })
     .state('editChild', {
@@ -73,6 +76,12 @@ angular.module('childSponsorshipWebApp', [
       templateUrl: 'views/child/sponsor.html',
       controller: 'ChildrenSponsorContoller'
     })
+    .state('addChildImages', {
+      url: '/children/:id/photos',
+      templateUrl: 'views/child/addPhotos.html',
+      controller: 'ChildrenPhotosController'
+    })
+    // Users
     .state('users', {
       url: '/users',
     templateUrl: 'views/user/index.html',
@@ -91,7 +100,7 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('newUser', {
       url: '/users/new',
-      tempalteUrl: 'views/user/new.html',
+      templateUrl: 'views/user/new.html',
       controller: 'UsersCreateController'
     })
     .state('editUser', {

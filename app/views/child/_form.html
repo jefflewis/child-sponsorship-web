@@ -1,17 +1,88 @@
-<div class="form-group">
-  <label for="name" class="col-sm-2 control-label">Name</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="child.name" class="form-control" id="name" placeholder="Name"/>
+<div class="row">
+  <div class="input-field col s12">
+    <input type="text" ng-model="child.name" class="validate" id="name"/>
+    <label for="name">Name</label>
+  </div>
+<div class="row">
+  <div class="input-field col s12">
+    <textarea id="description" ng-model="child.description" required class="materialize-textarea validate" length="240"></textarea>
+    <label for="description">Bio</label>
   </div>
 </div>
-<div class="form-group">
-  <label for="email" class="col-sm-2 control-label">Description</label>
-  <div class="col-sm-10">
-    <input type="email" ng-model="child.email" required class="form-control" id="email" placeholder="Email"/>
+<div class="row">
+  <div class="input-field col s6">
+    <div class="input-field col s6">
+      <input name="gender" type="radio" id="male" />
+      <label for="male">Boy</label>
+    </div>
+    <div class="input-field col s6">
+      <input name="gender" type="radio" id="female" />
+      <label for="female">Girl</label>
+    </div>
   </div>
-</div>
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <input type="submit" class="btn btn-primary" value="Save"/>
+  <div class="input-field col s6">
+    <label for="birthdate" class="">Birthdate</label>
+    <!-- <input id="birthdate" ng-model="child.birthdate" placeholder="Birthdate" type="date" ng-click="datepicker()" class="datepicker"> -->
+    <input id="birthdate" type="text" class="datepicker picker__input" ng-model="child.birthdate" readonly=""  ng-click="datepicker()" tabindex="-1" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="birthdate_root">
   </div>
+
+  <!-- Image Uploads -->
+  <!-- <div class="row">
+    <div class="input-field col s12">
+      <form id="fileupload" class="directUpload form-horizontal" role="form" ng-submit="addImage()">
+        <label for="file">Add a photo</label>
+        <input type="file" id="file" name="file" />
+        <button ng-click="addImage()" class="btn primary start">Start upload</button>
+      </form> -->
+      <!-- <form id="fileupload" class="directUpload" action="php/index.php" method="POST" enctype="multipart/form-data">
+          <div class="row">
+              <div class="span16 fileupload-buttonbar">
+                  <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
+                  <span class="btn success fileinput-button">
+                      <span>Add files...</span>
+                      <input type="file" name="files[]" multiple>
+                  </span>
+
+                  <span class="btn fileinput-button">
+                      <span>Other...</span>
+                      <input type="file" name="files2[]" multiple>
+                  </span>
+
+                  <button ng-click="addImage()" class="btn primary start">Start upload</button>
+                  <button type="reset" class="btn info cancel">Cancel upload</button>
+                  <button type="button" class="btn danger delete">Delete selected</button>
+                  <input type="checkbox" class="toggle">
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="span16">
+                  <table class="zebra-striped"><tbody class="files"></tbody></table>
+              </div>
+          </div>
+      </form> -->
+<!--     </div>
+  </div> -->
+  <!-- Multiple Image Uploads -->
+  <!-- <form name="form" novalidate>
+    <div ng-repeat="image in child.images track by $index" ng-form="subform">
+      <input name="input" type="text" ng-model="child.images[$index]" required>
+      <input type="file" >
+      <button ng-click="removeImage($index)">Remove</button>
+      <br>
+      <span ng-show="subform.input.$error.required">This field is rqeuired</span>
+    </div>
+    <button ng-click="addNewImage()">Add New Option</button>
+  </form>
+
+  <div class="file-field input-field col s4">
+    <div s3-upload bucket="s3Bucket" ng-model="product.remote_product_file_url"
+   s3-upload-options="{getOptionsUri: s3OptionsUri, folder: 'images/'}">
+    <input class="file-path validate valid" type="text" s3-upload bucket="s3bucket()" ng-model="child.images[$index]" >
+    <div class="btn">
+      <span>Photo</span>
+      <input type="file">
+    </div>
+  </div> -->
 </div>
+<input type="submit" class="btn btn-primary right" value="Save"/>

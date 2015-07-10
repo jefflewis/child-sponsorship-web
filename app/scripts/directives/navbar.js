@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name whosinApp.directive:navbar
+ * @name childSponsorshipWebApp.directive:navbar
  * @description
  * # navbar
  */
@@ -59,7 +59,7 @@ angular.module('childSponsorshipWebApp')
         $scope.children = function () {
           $state.go('children');
         };
-        
+
         $scope.sponsor = function () {
           $state.go('sponsorChild');
         };
@@ -71,7 +71,7 @@ angular.module('childSponsorshipWebApp')
         $scope.users = function () {
           $state.go('users');
         };
-        
+
         $scope.userChildren =function () {
           $state.go('userChildren')
         }

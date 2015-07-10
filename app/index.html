@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -16,22 +16,30 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- endbuild -->
   </head>
-  <body ng-app="childSponsorshipWebApp">
+  <main ng-app="childSponsorshipWebApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <navbar></navbar>
-
     <div class="container">
-    <div ui-view></div>
-
-    <div class="footer">
-      <div class="container">
-      </div>
+      <div ui-view></div>
     </div>
-
-
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col m12 l12 s12">
+            <h5 class="white-text">Child Sponsorship</h5>
+            <p class="grey-text text-lighten-4">Users can sponsor children and update their payment information. Administrators can manage the children in the sponsorship programs as well as the sponsors supporting them.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © <script>document.write(new Date().getFullYear())</script> Jeff Lewis
+        <a class="grey-text text-lighten-4 right" href="mailto:mail@jeffreylewis.me">Support</a>
+        </div>
+      </div>
+    </footer>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -45,6 +53,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -56,28 +65,31 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
     <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/directives/inputequals.js"></script>
-        <script src="scripts/services/authservice.js"></script>
-        <script src="scripts/services/apiservice.js"></script>
-        <script src="scripts/services/userservice.js"></script>
-        <script src="scripts/services/childservice.js"></script>        
-        <script src="scripts/services/popupservice.js"></script>
-        <script src="scripts/controllers/admin.js"></script>
-        <script src="scripts/controllers/authlogout.js"></script>
-        <script src="scripts/controllers/home.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/signup.js"></script>
-        <script src="scripts/controllers/splash.js"></script>
-        <script src="scripts/controllers/users.js"></script>
-        <script src="scripts/controllers/children.js"></script>
-        <script src="scripts/config/config.js"></script>
-        <script src="scripts/autofill-event.js"></script>
-        <script src="scripts/directives/navbar.js"></script>
-        <!-- endbuild -->
-</body>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/directives/inputequals.js"></script>
+    <script src="scripts/directives/thumbnail.js"></script>
+    <script src="scripts/services/authservice.js"></script>
+    <script src="scripts/services/apiservice.js"></script>
+    <script src="scripts/services/userservice.js"></script>
+    <script src="scripts/services/childservice.js"></script>
+    <script src="scripts/services/popupservice.js"></script>
+    <script src="scripts/controllers/admin.js"></script>
+    <script src="scripts/controllers/authlogout.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/signup.js"></script>
+    <script src="scripts/controllers/splash.js"></script>
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/controllers/children.js"></script>
+    <script src="scripts/config/config.js"></script>
+    <script src="scripts/autofill-event.js"></script>
+    <script src="scripts/directives/navbar.js"></script>
+    <!-- endbuild -->
+  </main>
 </html>

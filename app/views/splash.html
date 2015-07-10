@@ -9,11 +9,12 @@
   <a href="/#/signup" class="waves-effect waves-light btn-large">Sign up now!</a>
 </div> -->
 
-<div class="row">
+<div class="row margin-tb-md">
   <div class="col s12 m12">
     <div class="card-panel teal">
       <span class="white-text" ng-show="isLoggedIn">Welcome, {{user.name}}</span>
       <span class="white-text" ng-show="!isLoggedIn">Welcome to the Child Sponsorship App</span>
+      <a href="/#/signup" class="waves-effect waves-light btn red accent-1 z-depth-3 right" ng-show="!isLoggedIn">Sign up now!</a>
     </div>
   </div>
 </div>

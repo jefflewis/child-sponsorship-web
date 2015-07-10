@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('childSponsorshipWebApp')
-  .controller('SignupCtrl', function($scope, $rootElement, authService) {
+  .controller('SignupController', function($scope, $rootElement, authService) {
 
   $scope.submit = function(email, password, confirm) {
 
