@@ -3,9 +3,9 @@
 angular.module('childSponsorshipWebApp')
   .controller('UsersListController', function ($scope, $state, popupService, $window, User) {
     // Fetch all users. Issues a GET to /api/users
-    $scope.users = User.query(); 
+    $scope.users = User.query();
     // Delete a user. Issues a DELETE to /users/:id
-    $scope.deleteUser = function(user) { 
+    $scope.deleteUser = function(user) {
       if (popupService.showPopup('Really delete this?')) {
         user.$delete(function() {
           $rootScope.$broadcast("user.deleted");
@@ -17,6 +17,10 @@ angular.module('childSponsorshipWebApp')
   .controller('UsersViewController', function ($scope, $stateParams, User) {
     //Get a single user. Issues a GET to /users/:id
     $scope.user = User.get({ id: $stateParams.id });
+    $scope.user.$promise.then(function(data) {
+        var json = data.children;
+        $scope.children = JSON.parse(data.children);
+    });
   })
   .controller('UsersCreateController', function ($scope, $rootScope, $state, $stateParams, User) {
     // Create new user instance. Properties will be set via ng-model on UI
@@ -32,7 +36,7 @@ angular.module('childSponsorshipWebApp')
   })
   .controller('UsersEditController', function ($scope, $rootScope, $state, $stateParams, User) {
     //Update the edited user. Issues a POST to /api/users/:id
-    $scope.updateUser = function() { 
+    $scope.updateUser = function() {
       $scope.user.$save(function() {
         $rootScope.$broadcast("user.updated");
         $state.go('users');
@@ -41,10 +45,14 @@ angular.module('childSponsorshipWebApp')
     // Issues a GET request to /api/users/:id to get a user to update
     $scope.loadUser = function() {
       $scope.user = User.get({ id: $stateParams.id });
-    };  
+    };
     // Load a user which can be edited on UI
-    $scope.loadUser(); 
+    $scope.loadUser();
   })
   .controller('UsersChildrenController', function ($scope, $state, $stateParams, User) {
     $scope.user = User.get({ id: $stateParams.id });
+    $scope.user.$promise.then(function(data) {
+        var json = data.children;
+        $scope.children = JSON.parse(data.children);
+    });
   });

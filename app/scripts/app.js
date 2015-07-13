@@ -18,6 +18,7 @@ angular.module('childSponsorshipWebApp', [
   'ui.gravatar',
   'ngFileUpload',
   'angularFileUpload'
+  // 'angular-stripe'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -73,6 +74,11 @@ angular.module('childSponsorshipWebApp', [
     })
     .state('sponsorChild', {
       url: '/sponsor',
+      templateUrl: 'views/child/available.html',
+      controller: 'ChildrenAvailableContoller'
+    })
+    .state('sponsorChildPayment', {
+      url: '/children/:id/sponsor',
       templateUrl: 'views/child/sponsor.html',
       controller: 'ChildrenSponsorContoller'
     })

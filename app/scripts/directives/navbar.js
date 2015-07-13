@@ -25,6 +25,7 @@ angular.module('childSponsorshipWebApp')
         }
 
         $scope.$on('$viewContentLoaded', function() {
+          $(".dropdown-button").dropdown();
           $scope.isLoggedIn = authService.isLoggedIn();
           $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
