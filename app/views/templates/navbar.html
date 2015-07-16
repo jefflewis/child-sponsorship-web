@@ -1,27 +1,27 @@
 <!-- Dropdowns -->
 <ul id="dashboard-dropdown" class="dropdown-content">
-  <li><a style="background:" ng-show="isLoggedIn" href="/#/users/{{user.id}}/view"><i class="material-icons left">dashboard</i>Dashboard</a></li>
-  <li ng-show="isAdmin"><a href="#" ng-click="users()"><i class="material-icons left">recent_actors</i>Users</a></li>
-  <li ng-show="isAdmin"><a href="#" ng-click="children()"><i class="material-icons left">supervisor_account</i>Children</a></li>
+  <li><a style="background:" ng-show="isLoggedIn" ui-sref="viewUser({id:user.id})"><i class="material-icons left">dashboard</i>Dashboard</a></li>
+  <li ng-show="isAdmin"><a ui-sref="users"><i class="material-icons left">recent_actors</i>Users</a></li>
+  <li ng-show="isAdmin"><a ui-sref="children"><i class="material-icons left">supervisor_account</i>Children</a></li>
   <li class="divider"></li>
   <li><a href="#" ng-click="logout()"><i class="material-icons left">launch</i>Logout</a></li>
 </ul>
 <!-- Navbar -->
 <nav>
   <div class="nav-wrapper">
-    <a href="/#/" class="brand-logo">Child Sponsorship</a>
+    <a ui-sref="home" class="brand-logo">Child Sponsorship</a>
     <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a ng-show="isLoggedIn" href="#" ng-click="sponsor()">Sponsor a Child</a></li>
-      <li><a ng-show="isLoggedIn" href="/#/users/{{user.id}}/children/view">My Kids</a></li>
-      <li><a href="/#/login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
+      <li><a ui-sref="sponsorChild" ng-show="isLoggedIn">Sponsor a Child</a></li>
+      <li><a ng-show="isLoggedIn" ui-sref="userChildren({id:user.id})">My Kids</a></li>
+      <li><a ui-sref="login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dashboard-dropdown">{{user.email}}</a></li>
       <img class="circle" style="margin: 4px 4px 4px 4px;" ng-show="isLoggedIn" gravatar-src="user.email" gravatar-size="54"/>
     </ul>
     <ul id="mobile-menu" class="side-nav">
-      <li><a ng-show="isLoggedIn" href="#" ng-click="sponsor()">Sponsor a Child</a></li>
-      <li><a ng-show="isLoggedIn" href="/#/users/{{user.id}}/children/view">My Kids</a></li>
-      <li><a href="/#/login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
+      <li><a ng-show="isLoggedIn" href="#" ui-sref="sponsorChild" >Sponsor a Child</a></li>
+      <li><a ng-show="isLoggedIn" ui-sref="userChildren({id:user.id})">My Kids</a></li>
+      <li><a ui-sref="login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{user.email}}</a></li>
       <img class="circle" style="margin: 4px 4px 4px 4px;" ng-show="isLoggedIn" gravatar-src="user.email" gravatar-size="54"/>
     </ul>

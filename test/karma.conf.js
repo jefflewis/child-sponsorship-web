@@ -39,6 +39,12 @@ module.exports = function(config) {
       'bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
       'bower_components/angular-stripe/release/angular-stripe.js',
       'bower_components/angular-materialize/src/angular-materialize.js',
+      'bower_components/blueimp-load-image/js/load-image.js',
+      'bower_components/blueimp-load-image/js/load-image-ios.js',
+      'bower_components/blueimp-load-image/js/load-image-orientation.js',
+      'bower_components/blueimp-load-image/js/load-image-meta.js',
+      'bower_components/blueimp-load-image/js/load-image-exif.js',
+      'bower_components/blueimp-load-image/js/load-image-exif-map.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

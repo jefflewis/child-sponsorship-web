@@ -5,6 +5,8 @@ angular.module('childSponsorshipWebApp')
     // Fetch all children. Issues a GET to /api/children
     $scope.children = Child.query();
     $('.modal-trigger').leanModal();
+    $('.materialboxed').materialbox();
+    Materialize.fadeInImage('.img')
 
     $scope.openModal = function (child) {
       $('#modal').openModal();
@@ -30,6 +32,7 @@ angular.module('childSponsorshipWebApp')
 
     $scope.$on('$viewContentLoaded', function(){
       $('textarea#description').characterCounter();
+      Materialize.fadeInImage('.img')
     });
 
     $scope.datepicker = function () {
@@ -40,9 +43,9 @@ angular.module('childSponsorshipWebApp')
     };
 
     $scope.addChild = function() { //create a new child. Issues a POST to /children
-      $scope.child.$save(function() {
+      $scope.child.$save(function(data) {
         // On success go back to home i.e. children state.
-        $state.go('children');
+        $state.go('viewChild', {id: data.id});
       });
     };
   })
@@ -81,6 +84,7 @@ angular.module('childSponsorshipWebApp')
         $scope.uploader.url = $scope.signed_form.url;
         $scope.uploader.withCredentials = true;
         $scope.uploader.autoUpload = true;
+        $scope.uploader.removeAfterUpload = true;
       })
     );
     $scope.child = Child.get({ id: $stateParams.id });
@@ -119,9 +123,8 @@ angular.module('childSponsorshipWebApp')
     };
 
     $scope.uploader.onAfterAddingFile = function (fileItem) {
-      // fileItem.index = $scope.uploader._nextIndex - 1;
+      fileItem.index = $scope.uploader._nextIndex - 1;
       console.info('onAfterAdding', fileItem);
-      // $scope.upload(fileItem);
     };
 
     $scope.uploader.onBeforeUploadItem = function(fileItem) {
@@ -145,15 +148,16 @@ angular.module('childSponsorshipWebApp')
       var url = xml.find( "Location" ).text();
       apiService.post('/children/' + $scope.child.id + '/photos/new', { url: url, caption: 'test' })
       .success( function (data, status, headers, config) {
+        Materialize.toast('Upload Successfull!');
       })
       .error( function( status ) {
-        alert('Failure! :(')
+        Materialize.toast('Error uploading image');
       } )
     };
 
     $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
         console.info('onErrorItem', fileItem, response, status, headers);
-        alert('There was an error uploading the image.' + fileItem);
+        Materialize.toast('Error uploading image - ' + fileItem);
     };
 
     $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
@@ -188,6 +192,7 @@ angular.module('childSponsorshipWebApp')
     apiService.get('/children/available')
     .success( function (data, status, headers, config) {
       $scope.available = data;
+      Materialize.fadeInImage('.img')
     })
     .error( function(data, status) {
       alert('error: ' + status);

@@ -65,9 +65,11 @@ angular.module('childSponsorshipWebApp')
     $scope.loadUser();
   })
   .controller('UsersChildrenController', function ($scope, $state, $stateParams, User) {
+    Materialize.fadeInImage('.img')
     $scope.user = User.get({ id: $stateParams.id });
     $scope.user.$promise.then(function(data) {
         var json = data.children;
         $scope.children = JSON.parse(data.children);
+
     });
   });

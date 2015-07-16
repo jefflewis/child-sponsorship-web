@@ -52,10 +52,13 @@ angular.module('childSponsorshipWebApp')
           $scope.isAdmin = authService.isAdmin();
           $scope.user = authService.currentUser();
           $state.go('home');
+          $state.reload();
         });
 
         $scope.logout = function() {
           authService.logout();
+          $state.go('home');
+          $state.reload();
         };
 
         $scope.children = function () {

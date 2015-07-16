@@ -8,7 +8,6 @@ angular.module('childSponsorshipWebApp').directive('modal', function () {
     scope: {
       object: '='
     },
-    // controllerAs: 'ChildrenListController',
     link: function(scope, element, attrs) {
       scope.deleteObject = function(object) {
         var name = object.name;
