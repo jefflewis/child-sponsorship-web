@@ -4,15 +4,25 @@ angular.module('childSponsorshipWebApp')
   .controller('UsersListController', function ($scope, $state, popupService, $window, User) {
     // Fetch all users. Issues a GET to /api/users
     $scope.users = User.query();
-    // Delete a user. Issues a DELETE to /users/:id
-    $scope.deleteUser = function(user) {
-      if (popupService.showPopup('Really delete this?')) {
-        user.$delete(function() {
-          $rootScope.$broadcast("user.deleted");
-          $state.go('users');
-        });
-      }
+    $('.modal-trigger').leanModal();
+
+    $scope.openModal = function (user) {
+      $('#modal').openModal();
+      $scope.currentUser = user;
     };
+
+    $scope.closeModal = function () {
+      $('#modal').closeModal();
+    };
+
+    // $scope.deleteUser = function(user) {
+    //   if (popupService.showPopup('Really delete this?')) {
+    //     user.$delete(function() {
+    //       $rootScope.$broadcast("user.deleted");
+    //       $state.go('users');
+    //     });
+    //   }
+    // };
   })
   .controller('UsersViewController', function ($scope, $stateParams, User) {
     //Get a single user. Issues a GET to /users/:id
@@ -34,19 +44,24 @@ angular.module('childSponsorshipWebApp')
       });
     };
   })
-  .controller('UsersEditController', function ($scope, $rootScope, $state, $stateParams, User) {
-    //Update the edited user. Issues a POST to /api/users/:id
+  .controller('UsersEditController', function ($scope, $rootScope, $state, $stateParams, User, authService) {
+    //Update the edited user. Issues a PUT to /api/users/:id
     $scope.updateUser = function() {
-      $scope.user.$save(function() {
+      $scope.user.$update(function() {
         $rootScope.$broadcast("user.updated");
-        $state.go('users');
+        if (authService.isAdmin()) {
+          $state.go('users');
+        }
+        else {
+          $state.go('home');
+        }
       });
     };
+
     // Issues a GET request to /api/users/:id to get a user to update
     $scope.loadUser = function() {
       $scope.user = User.get({ id: $stateParams.id });
     };
-    // Load a user which can be edited on UI
     $scope.loadUser();
   })
   .controller('UsersChildrenController', function ($scope, $state, $stateParams, User) {

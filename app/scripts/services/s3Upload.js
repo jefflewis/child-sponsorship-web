@@ -10,7 +10,7 @@
 
 angular.module('childSponsorshipWebApp').factory('s3Upload', function($http) {
 
-  var upload = function(file, sizeLimit, ) {
+  var upload = function(file, sizeLimit) {
     apiService.post( path, { email: email, password: password } )
     .success( function (data, status, headers, config) {
       localStorage.setItem('api-token', data.token);
@@ -30,7 +30,7 @@ angular.module('childSponsorshipWebApp').factory('s3Upload', function($http) {
   };
 
   var routeIsAccessible = function() {
-    if( accessRequired === undefined || accessRequired == null || accessRequired == 0 ) {
+    if( accessRequired === undefined || accessRequired === null || accessRequired === 0 ) {
       return true;
     } else {
       return(

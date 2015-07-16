@@ -1,44 +1,30 @@
 'use strict';
 
 angular.module('childSponsorshipWebApp')
-  .controller('SignupController', function($scope, $rootElement, authService) {
+  .controller('SignupController', function($scope, $rootScope, $state, $rootElement, authService) {
 
-  $scope.submit = function(email, password, confirm) {
+  $scope.submitForAuthentication = function(name, email, password, passwordConfirmation) {
+    if ( $scope.password === $scope.passwordConfirm) {
+      authService.signup(name, email, password);
+    } else {
 
-    $scope.submitted = true;
-      if ( password == confirm) {
-        authService.signup($scope.email, $scope.password);
-      } else {
-
-        var message = '';
-
-        if ($scope.form.email.$invalid) {
-          message += 'Invalid email address';
-        }
-
-        if (password != confirm) {
-          message += message == '' ? message : ', ';
-          message += 'Passwords do not match';
-        }
-
-        $scope.error = {
-          message: message
-        };
+      if ($scope.form.email.$invalid) {
+        Materialize.toast('Invalid email address', 4000)
       }
-    };
+      if (password !== passwordConfirmation) {
+        Materialize.toast('Passwords do not match', 4000)
+      }
+    }
+  };
 
-  $scope.$root.$on('signup.success', function(e, user) {
-    $scope.$apply(function() {
-      $location.path('/login');
-    });
+  $scope.$on('login.success', function(e, user) {
+    $state.go('home');
   });
 
-  $scope.$root.$on('signup.failed', function(e, error) {
-    $scope.$apply(function() {
-      $scope.error = error;
-    });
+  $scope.$on('login.failed', function(e, error) {
+    $scope.error = error;
+    console.info('error: ', error);
   });
-
 
   /* Handle browser autofill of login form */
   window.setTimeout( function() {

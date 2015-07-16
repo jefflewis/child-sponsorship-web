@@ -9,10 +9,10 @@
  */
 
 angular.module('childSponsorshipWebApp')
-  .factory('authService', function ($rootScope, $location, $q, apiService) {
+.factory('authService', function ($rootScope, $location, $q, apiService) {
 
-    var authenticate = function(path, email, password) {
-      apiService.post( path, { email: email, password: password } )
+    var authenticate = function(path, name, email, password) {
+      apiService.post( path, { name: name, email: email, password: password } )
       .success( function (data, status, headers, config) {
         localStorage.setItem('api-token', data.token);
         apiService.get('/user')
@@ -20,18 +20,19 @@ angular.module('childSponsorshipWebApp')
           user = data;
           localStorage.setItem('email', user.email);
           localStorage.setItem('access', user.access);
-          // $location.path(localStorage.getItem('post-login-path') || '/home').replace();
           $rootScope.$broadcast("login.success");
+          Materialize.toast('Login Successful', 4000)
         });
       })
       .error( function(data, status, error) {
         alert('error: ' + status);
         $rootScope.$broadcast("login.failed", error);
+        Materialize.toast('Login Failed', 4000)
       });
     };
 
     var routeIsAccessible = function() {
-      if( accessRequired === undefined || accessRequired == null || accessRequired == 0 ) {
+      if( accessRequired === undefined || accessRequired === null || accessRequired === 0 ) {
         return true;
       } else {
         return(
@@ -53,15 +54,11 @@ angular.module('childSponsorshipWebApp')
     };
 
     var login = function(email, password) {
-      authenticate('/login', email, password);
+      authenticate('/login', 'name', email, password);
     };
 
-    var signup = function(email, password) {
-      authenticate('/signup', email, password).then(function () {
-        $rootScope.$broadcast("login.success");
-      }, function (error) {
-        $rootScope.$broadcast("login.failed", error);
-      })
+    var signup = function(name, email, password) {
+      authenticate('/signup', name, email, password);
     };
 
     var email = function() {
@@ -85,7 +82,7 @@ angular.module('childSponsorshipWebApp')
     };
 
     var currentUser = function() {
-      if (user == undefined) {
+      if (user === undefined) {
         apiService.get('/user')
         .success(function (data, status, headers, config) {
           user = data;

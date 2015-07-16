@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Autofill event polyfill ##version:1.0.0##
  * (c) 2014 Google, Inc.

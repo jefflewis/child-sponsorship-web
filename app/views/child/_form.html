@@ -1,13 +1,19 @@
 <div class="row">
-  <div class="input-field col s12">
+  <div input-field class="input-field col s12">
     <input type="text" ng-model="child.name" class="validate" id="name"/>
     <label class="active" for="name">Name</label>
   </div>
 </div>
 <div class="row">
-  <div class="input-field col s12">
-    <textarea id="description" ng-model="child.description" required class="materialize-textarea validate" length="240"></textarea>
-    <label class="active" for="description">Bio</label>
+  <div input-field class="input-field col s12">
+    <textarea id="description" ng-model="child.description" required class="materialize-textarea validate" length="140"></textarea>
+    <label class="active" for="description">Description</label>
+  </div>
+</div>
+<div class="row">
+  <div input-field class="input-field col s12">
+    <textarea id="bio" ng-model="child.bio" required class="materialize-textarea validate"></textarea>
+    <label class="active" for="bio">Bio</label>
   </div>
 </div>
 <div class="row">
@@ -15,9 +21,9 @@
     <label for="birthdate" class="active">Birthdate</label>
     <input id="birthdate" type="text" class="datepicker picker__input" ng-model="child.birthdate" readonly=""  ng-click="datepicker()" tabindex="-1" aria-haspopup="true" aria-expanded="false" aria-readonly="false" aria-owns="birthdate_root">
   </div>
-  <div class="row">
-    <div class="col s6">
-      <div class="input-field col s6">
+  <div class="row center">
+    <div class="col s1 offset-s1">
+      <div class="input-field">
         <label for="gender">Gender</label>
         <br/>
         <p>
@@ -28,7 +34,9 @@
           <input name="gender" type="radio" id="female" value="female" ng-model="child.gender"/>
           <label for="female">Girl</label>
         </p>
+      </div>
     </div>
   </div>
+  <input type="submit" class="btn btn-primary right" value="Save"/>
 </div>
-<input type="submit" class="btn btn-primary right" value="Save"/>
+

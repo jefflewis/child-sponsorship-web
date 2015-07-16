@@ -1,3 +1,5 @@
+'use strict';
+
 /**
 * The ng-thumb directive
 * @author: nerv

@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col s6 m6 center" ng-repeat="child in children">
+  <div class="col s6 m6 center" ng-repeat="child in children track by child.id">
     <div class="card medium">
       <div class="card-image">
         <img src="{{child.child_photos[0].url}}">
@@ -15,33 +15,9 @@
       </div>
       <div class="card-action">
         <a class="" ui-sref="viewChild({id:child.id})">View</a>
-        <a class="" ng-click="deleteChild(child)">Delete</a>
+        <a class="waves-effect waves-red modal-trigger" ng-click="openModal(child)">Delete</a>
+        <div modal object="currentChild" id="modal" class="modal bottom-sheet"></div>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <table id="childrentable" class="table table-hover table-responsive">
-  <thead>
-    <tr>
-      <td><h3>All Children</h3></td>
-    </tr>
-    <tr>
-      <td><strong>Name</strong></td>
-      <td><strong>Description</strong></td>
-      <td><strong>User ID</strong></td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="child in children">
-      <td>{{child.name}}</td>
-      <td>{{child.description}}</td>
-      <td>{{child.user_id}}</td>
-      <td>
-        <a class="btn btn-primary" ui-sref="viewChild({id:child.id})">View</a>
-        <a class="btn btn-danger"  ng-click="deleteChild(child)">Delete</a>
-      </td>
-    </tr>
-  </tbody>
-</table> -->

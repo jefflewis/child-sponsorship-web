@@ -17,7 +17,8 @@ angular.module('childSponsorshipWebApp', [
   'ui.router',
   'ui.gravatar',
   'ngFileUpload',
-  'angularFileUpload'
+  'angularFileUpload',
+  'ui.materialize'
   // 'angular-stripe'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {

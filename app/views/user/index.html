@@ -16,8 +16,9 @@
       <td>{{user.name}}</td>
       <td>{{user.email}}</td>
       <td>
-        <a class="btn btn-primary" ui-sref="viewUser({id:user.id})">View</a>
-        <a class="btn red"  ng-click="deleteUser(user)">Delete</a>
+        <a class="waves-effect waves-light btn" ui-sref="viewUser({id:user.id})">View</a>
+        <a class="waves-effect waves-red-accent-1 btn red modal-trigger" ng-click="openModal(user)">Delete</a>
+        <div modal object="currentUser" id="modal" class="modal bottom-sheet"></div>
       </td>
     </tr>
   </tbody>

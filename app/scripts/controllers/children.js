@@ -4,24 +4,33 @@ angular.module('childSponsorshipWebApp')
   .controller('ChildrenListController', function ($scope, $state, popupService, $window, Child) {
     // Fetch all children. Issues a GET to /api/children
     $scope.children = Child.query();
-    console.info('children: ', $scope.children.$promise);
+    $('.modal-trigger').leanModal();
 
-    $scope.deleteChild = function(child) { // Delete a child. Issues a DELETE to /children/:id
-      if (popupService.showPopup('Really delete this?')) {
-        child.$delete(function() {
-          $window.location.href = ''; //redirect to home
-        });
-      }
+    $scope.openModal = function (child) {
+      $('#modal').openModal();
+      $scope.currentChild = child;
     };
+
+    $scope.closeModal = function () {
+      $('#modal').closeModal();
+    };
+
+    $scope.$on('child.deleted', function(e, error) {
+      $state.reload();
+    });
+
+
   })
   .controller('ChildrenViewController', function ($scope, $stateParams, Child) {
     //Get a single child. Issues a GET to /children/:id
     $scope.child = Child.get({ id: $stateParams.id });
   })
   .controller('ChildrenCreateController', function ($scope, $state, popupService, $stateParams, Child, apiService) {
-    $('#description').characterCounter();
-    //create new child instance. Properties will be set via ng-model on UI
     $scope.child = new Child();
+
+    $scope.$on('$viewContentLoaded', function(){
+      $('textarea#description').characterCounter();
+    });
 
     $scope.datepicker = function () {
       $('.datepicker').pickadate({
@@ -38,7 +47,10 @@ angular.module('childSponsorshipWebApp')
     };
   })
   .controller('ChildrenEditController', function ($scope, $state, $stateParams, Child) {
-    $('#description').characterCounter();
+
+    $scope.$on('$viewContentLoaded', function(){
+      $('.materialize-textarea').characterCounter();
+    });
 
     $scope.updateChild = function() {
       $scope.child.$update(function() {
@@ -55,9 +67,6 @@ angular.module('childSponsorshipWebApp')
 
     $scope.loadChild = function() { //Issues a GET request to /api/children/:id to get a child to update
       $scope.child = Child.get({ id: $stateParams.id });
-      // $scope.child.$promise.then(function(data) {
-      //     $scope.child.birthdate = new Date($scope.child.birthdate);
-      // });
     };
 
     $scope.loadChild(); // Load a child which can be edited on UI
@@ -189,13 +198,15 @@ angular.module('childSponsorshipWebApp')
       var user = authService.currentUser();
       var handler = StripeCheckout.configure({
         key: 'pk_test_H6bg1MhKkinX8GVyFFiILbcJ',
-        image: child.child_photos[0].url,
+        image: 'assets/img/networkicons/default.png',//child.child_photos[0].url,
         email: user.email,
         token: function(token) {
           // Use the token to create the charge with a server-side script.
           // You can access the token ID with `token.id`
           apiService.post(('/charge'), {stripeToken: token, child_id: child.id, user_id: user.id })
           .success( function (data, status, headers, config) {
+            Materialize.toast(child.name + ' has been sponsored!', 4000);
+            $state.reload();
           })
           .error( function (data, status) {
             alert('error: ' + status + ' : ' + data);

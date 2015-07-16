@@ -2,7 +2,7 @@
   <div class="col s6 m6 center" ng-repeat="child in available">
     <div class="card medium">
       <div class="card-image">
-        <img src="{{child.child_photos[0].url}}">
+        <img src="{{child.child_photos[0].url || 'images/default.png'}}">
         <span class="card-title">{{child.name}} — Age {{child.age}}</span>
       </div>
       <div class="card-content">
