@@ -203,18 +203,17 @@ angular.module('childSponsorshipWebApp')
       var user = authService.currentUser();
       var handler = StripeCheckout.configure({
         key: 'pk_test_H6bg1MhKkinX8GVyFFiILbcJ',
-        image: 'assets/img/networkicons/default.png',//child.child_photos[0].url,
+        image: 'images/default.png',//child.child_photos[0].url,
         email: user.email,
         token: function(token) {
-          // Use the token to create the charge with a server-side script.
-          // You can access the token ID with `token.id`
           apiService.post(('/charge'), {stripeToken: token, child_id: child.id, user_id: user.id })
           .success( function (data, status, headers, config) {
             Materialize.toast(child.name + ' has been sponsored!', 4000);
             $state.reload();
           })
           .error( function (data, status) {
-            alert('error: ' + status + ' : ' + data);
+            Materialize.toast('Error with payment: ' + data + ' - ' + status, 4000);
+            $state.reload();
           });
         }
       });

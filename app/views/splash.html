@@ -17,6 +17,7 @@
 </div>
 <div class="row center">
   <a ui-sref="signup" class="center waves-effect waves-light btn btn-large red accent-1 z-depth-3 right" ng-show="!isLoggedIn">Sign up now!</a>
+  <a ui-sref="login" class="center waves-effect waves-light btn btn-large green accent-3 z-depth-3 left" ng-show="!isLoggedIn">Login</a>
   <a class="btn btn-default btn-large waves waves-light green accent-3" ng-show="isLoggedIn" ui-sref="sponsor">Sponsor a Child</a>
   <a class="btn btn-default btn-large waves waves-light green accent-4" ng-show="isLoggedIn" ui-sref="userChildren({id:user.id})">My Kids</a>
 </div>

@@ -19,12 +19,11 @@
       <img class="circle" style="margin: 4px 4px 4px 4px;" ng-show="isLoggedIn" gravatar-src="user.email" gravatar-size="54"/>
     </ul>
     <ul id="mobile-menu" class="side-nav">
-      <a class="dropdown-button" href="#!" data-activates="dropdown1">{{user.email}}</a>
-      <img class="circle" style="margin: 4px 4px 4px 4px;" ng-show="isLoggedIn" gravatar-src="user.email" gravatar-size="54"/>
-      <li><a ng-show="isLoggedIn" href="#" ui-sref="sponsorChild" >Sponsor a Child</a></li>
-      <li><a ng-show="isLoggedIn" ui-sref="userChildren({id:user.id})">My Kids</a></li>
-      <li><a ui-sref="login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
-      <li><a style="background:" ng-show="isLoggedIn" ui-sref="viewUser({id:user.id})"><i class="material-icons left">dashboard</i>Dashboard</a></li>
+      <li ng-show="isLoggedIn"><img class="circle" style="margin: 4px 4px 4px 4px;" gravatar-src="user.email" gravatar-size="54"/><a class="dropdown-button" href="#!" data-activates="dropdown1">{{user.email}}</a></li>
+      <li ng-show="isLoggedIn"><a ng-show="isLoggedIn" href="#" ui-sref="sponsorChild" >Sponsor a Child</a></li>
+      <li ng-show="isLoggedIn"><a ng-show="isLoggedIn" ui-sref="userChildren({id:user.id})">My Kids</a></li>
+      <li ng-show="isLoggedIn"><a ui-sref="login" ng-show="!isLoggedIn" style="margin-right:10px;">Login</a></li>
+      <li ng-show="isLoggedIn"><a style="background:" ng-show="isLoggedIn" ui-sref="viewUser({id:user.id})"><i class="material-icons left">dashboard</i>Dashboard</a></li>
       <li ng-show="isAdmin"><a ui-sref="users"><i class="material-icons left">recent_actors</i>Users</a></li>
       <li ng-show="isAdmin"><a ui-sref="children"><i class="material-icons left">supervisor_account</i>Children</a></li>
       <li class="divider"></li>

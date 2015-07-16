@@ -13,7 +13,7 @@ angular.module('childSponsorshipWebApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  // 'ngTouch',
+  'ngTouch',
   'ui.router',
   'ui.gravatar',
   'angularFileUpload',
