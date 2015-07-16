@@ -187,7 +187,7 @@ angular.module('childSponsorshipWebApp')
     // };
 
   })
-  .controller('ChildrenAvailableContoller', function ($scope, $state, $stateParams, Child, apiService, authService) {
+  .controller('ChildrenAvailableContoller', function ($scope, $state, $stateParams, Child, apiService, authService, StripeCheckout) {
     // Fetch all available Children (with no user_id)
     apiService.get('/children/available')
     .success( function (data, status, headers, config) {
@@ -202,7 +202,6 @@ angular.module('childSponsorshipWebApp')
     $scope.sponsor = function(child) {
       var user = authService.currentUser();
       var handler = StripeCheckout.configure({
-        key: 'pk_test_H6bg1MhKkinX8GVyFFiILbcJ',
         image: 'images/default.png',//child.child_photos[0].url,
         email: user.email,
         token: function(token) {

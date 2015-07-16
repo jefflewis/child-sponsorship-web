@@ -45,6 +45,7 @@ module.exports = function(config) {
       'bower_components/blueimp-load-image/js/load-image-meta.js',
       'bower_components/blueimp-load-image/js/load-image-exif.js',
       'bower_components/blueimp-load-image/js/load-image-exif-map.js',
+      'bower_components/angular-stripe-checkout/angular-stripe-checkout.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

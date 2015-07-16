@@ -17,15 +17,20 @@ angular.module('childSponsorshipWebApp', [
   'ui.router',
   'ui.gravatar',
   'angularFileUpload',
-  'ui.materialize'
+  'ui.materialize',
+  'stripe.checkout'
 ])
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider, StripeCheckoutProvider) {
 
   // Enable cross domain calls
   $httpProvider.defaults.useXDomain = true;
 
   // Remove the header used to identify ajax call that would prevent CORS from working
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+  StripeCheckoutProvider.defaults({
+    key: 'pk_test_H6bg1MhKkinX8GVyFFiILbcJ'
+  });
 
   // Set up states
   $stateProvider
