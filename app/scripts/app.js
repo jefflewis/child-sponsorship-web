@@ -13,13 +13,11 @@ angular.module('childSponsorshipWebApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngTouch',
+  // 'ngTouch',
   'ui.router',
   'ui.gravatar',
-  'ngFileUpload',
   'angularFileUpload',
   'ui.materialize'
-  // 'angular-stripe'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
