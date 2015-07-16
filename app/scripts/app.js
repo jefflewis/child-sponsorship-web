@@ -79,7 +79,11 @@ angular.module('childSponsorshipWebApp', [
     .state('sponsorChild', {
       url: '/sponsor',
       templateUrl: 'views/child/available.html',
-      controller: 'ChildrenAvailableContoller'
+      controller: 'ChildrenAvailableContoller',
+      resolve: {
+        // checkout.js isn't fetched until this is resolved.
+        stripe: StripeCheckoutProvider.load
+      }
     })
     .state('sponsorChildPayment', {
       url: '/children/:id/sponsor',
