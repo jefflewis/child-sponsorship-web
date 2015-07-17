@@ -34,7 +34,6 @@ module.exports = function(config) {
       'bower_components/angular-gravatar/build/angular-gravatar.js',
       'bower_components/materialize/bin/materialize.js',
       'bower_components/angular-file-upload/angular-file-upload.js',
-      'bower_components/angular-materialize/src/angular-materialize.js',
       'bower_components/angular-stripe-checkout/angular-stripe-checkout.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-mocks/angular-mocks.js',

@@ -17,7 +17,7 @@ angular.module('childSponsorshipWebApp', [
   'ui.router',
   'ui.gravatar',
   'angularFileUpload',
-  'ui.materialize',
+  // 'ui.materialize',
   'stripe.checkout'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider, StripeCheckoutProvider) {

@@ -8,23 +8,23 @@ angular.module('childSponsorshipWebApp')
     $('.materialboxed').materialbox();
 
     $scope.openModal = function (child) {
-      $('#modal').openModal();
+      $('#modal1').openModal();
       $scope.currentChild = child;
       console.info('child', $scope.currentChild.name);
     };
 
     $scope.closeModal = function () {
-      $('#modal').closeModal();
+      $('#modal1').closeModal();
     };
 
-    $scope.deleteObject = function(object) {
-      console.info('child', object.name);
-      var name = object.name;
-      object.$delete(function() {
-        Materialize.toast(name + ' has been deleted', 4000);
-        window.location.reload()
-      });
-    };
+    // $scope.deleteObject = function(object) {
+    //   console.info('child', object.name);
+    //   var name = object.name;
+    //   object.$delete(function() {
+    //     Materialize.toast(name + ' has been deleted', 4000);
+    //     window.location.reload()
+    //   });
+    // };
 
     $scope.$on('child.deleted', function(e, error) {
       $state.reload();
