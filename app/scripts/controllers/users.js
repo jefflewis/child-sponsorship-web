@@ -7,12 +7,12 @@ angular.module('childSponsorshipWebApp')
     $('.modal-trigger').leanModal();
 
     $scope.openModal = function (user) {
-      $('#modalDelete').openModal();
+      $('#modal').openModal();
       $scope.currentUser = user;
     };
 
     $scope.closeModal = function () {
-      $('#modalDelete').closeModal();
+      $('#modal').closeModal();
     };
   })
   .controller('UsersViewController', function ($scope, $stateParams, User) {

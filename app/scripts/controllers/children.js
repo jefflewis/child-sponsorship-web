@@ -5,27 +5,16 @@ angular.module('childSponsorshipWebApp')
     // Fetch all children. Issues a GET to /api/children
     $scope.children = Child.query();
     $('.modal-trigger').leanModal();
-    $('.materialboxed').materialbox();
 
     $scope.openModal = function (child) {
-      $('#modal1').openModal();
+      $('#modal').openModal();
       $scope.currentChild = child;
-      console.info('child', $scope.currentChild.name);
     };
 
     $scope.closeModal = function () {
-      $('#modal1').closeModal();
+      $('#modal').closeModal();
     };
-
-    // $scope.deleteObject = function(object) {
-    //   console.info('child', object.name);
-    //   var name = object.name;
-    //   object.$delete(function() {
-    //     Materialize.toast(name + ' has been deleted', 4000);
-    //     window.location.reload()
-    //   });
-    // };
-
+    
     $scope.$on('child.deleted', function(e, error) {
       $state.reload();
     });
@@ -34,7 +23,16 @@ angular.module('childSponsorshipWebApp')
     //Get a single child. Issues a GET to /children/:id
     $scope.child = Child.get({ id: $stateParams.id });
     $scope.birthdayDate = moment($scope.child.birthdate).format("MMMM Do, YYYY");
-    console.info('child: ', $scope.child);
+    $('.modal-trigger').leanModal();
+
+    $scope.openModal = function (child) {
+      $('#modal').openModal();
+      $scope.currentChild = child;
+    };
+
+    $scope.closeModal = function () {
+      $('#modal').closeModal();
+    };
   })
   .controller('ChildrenCreateController', function ($scope, $state, $stateParams, Child, apiService) {
     $scope.child = new Child();

@@ -23,7 +23,8 @@
         <p>{{child_photo.caption}}</p>
       </div>
       <div class="card-action">
-        <a ng-show="isAdmin" ng-click="">Delete</a>
+        <a class="waves-effect waves-red modal-trigger" ng-click="openModal(child)">Delete</a>
+        <div modaldelete object="currentChild" id="modal" class="bottom-sheet modal modal-trigger"></div>
       </div>
     </div>
   </div>

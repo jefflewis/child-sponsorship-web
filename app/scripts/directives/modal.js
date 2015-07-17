@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('childSponsorshipWebApp').directive('modal-delete', function () {
+angular.module('childSponsorshipWebApp').directive('modaldelete', function () {
   return {
     restrict: 'A',
     transclude: true,
-    replace: true,
     templateUrl: 'views/templates/modal.html',
     scope: {
       object: '='
