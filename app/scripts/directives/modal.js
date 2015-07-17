@@ -10,9 +10,9 @@ angular.module('childSponsorshipWebApp').directive('modal', function () {
     },
     link: function(scope, element, attrs) {
       scope.deleteObject = function(object) {
+        console.info('child', object.name);
         var name = object.name;
         object.$delete(function() {
-          // $state.reload();
           Materialize.toast(name + ' has been deleted', 4000);
           window.location.reload()
         });

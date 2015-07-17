@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('childSponsorshipWebApp')
-  .controller('UsersListController', function ($scope, $state, popupService, $window, User) {
+  .controller('UsersListController', function ($scope, $state, $window, User) {
     // Fetch all users. Issues a GET to /api/users
     $scope.users = User.query();
     $('.modal-trigger').leanModal();
@@ -14,18 +14,8 @@ angular.module('childSponsorshipWebApp')
     $scope.closeModal = function () {
       $('#modal').closeModal();
     };
-
-    // $scope.deleteUser = function(user) {
-    //   if (popupService.showPopup('Really delete this?')) {
-    //     user.$delete(function() {
-    //       $rootScope.$broadcast("user.deleted");
-    //       $state.go('users');
-    //     });
-    //   }
-    // };
   })
   .controller('UsersViewController', function ($scope, $stateParams, User) {
-    //Get a single user. Issues a GET to /users/:id
     $scope.user = User.get({ id: $stateParams.id });
     $scope.user.$promise.then(function(data) {
         var json = data.children;
@@ -33,24 +23,20 @@ angular.module('childSponsorshipWebApp')
     });
   })
   .controller('UsersCreateController', function ($scope, $rootScope, $state, $stateParams, User) {
-    // Create new user instance. Properties will be set via ng-model on UI
     $scope.user = new User();
-    // Create a new user. Issues a POST to /users
     $scope.addUser = function() {
       $scope.user.$save(function() {
-        // On success go back to home i.e. users state.
         $rootScope.$broadcast("user.created");
-        $state.go('users');
+        $state.go('viewUser', {id: $scope.user.id});
       });
     };
   })
   .controller('UsersEditController', function ($scope, $rootScope, $state, $stateParams, User, authService) {
-    //Update the edited user. Issues a PUT to /api/users/:id
     $scope.updateUser = function() {
       $scope.user.$update(function() {
         $rootScope.$broadcast("user.updated");
         if (authService.isAdmin()) {
-          $state.go('users');
+          $state.go('viewUser', {id: $scope.user.id});
         }
         else {
           $state.go('home');
@@ -58,18 +44,15 @@ angular.module('childSponsorshipWebApp')
       });
     };
 
-    // Issues a GET request to /api/users/:id to get a user to update
     $scope.loadUser = function() {
       $scope.user = User.get({ id: $stateParams.id });
     };
     $scope.loadUser();
   })
   .controller('UsersChildrenController', function ($scope, $state, $stateParams, User) {
-    Materialize.fadeInImage('.img')
     $scope.user = User.get({ id: $stateParams.id });
     $scope.user.$promise.then(function(data) {
         var json = data.children;
         $scope.children = JSON.parse(data.children);
-
     });
   });

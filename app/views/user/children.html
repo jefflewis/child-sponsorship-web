@@ -4,7 +4,7 @@
   <div class="col s12 m6 center" ng-repeat="child in children">
     <div class="card medium">
       <div class="card-image">
-        <img src="{{child.child_photos[0].url}}">
+        <img ng-src="{{child.child_photos[0].url}}">
         <span class="card-title">{{child.name}}</span>
       </div>
       <div class="card-content">

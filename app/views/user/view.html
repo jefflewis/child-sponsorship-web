@@ -17,7 +17,7 @@
 </div>
 <ul class="collection" ng-repeat="child in children">
   <li class="collection-item avatar">
-    <img src="{{child.child_photos[0].url}}" alt="" class="circle">
+    <img ng-src="{{child.child_photos[0].url}}" alt="" class="circle">
     <span class="title"><strong>{{child.name}}</strong></span>
     <p>{{child.description}}</p>
     <span class="badge">Age {{child.age}}</span>

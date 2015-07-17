@@ -27,59 +27,37 @@ angular.module('childSponsorshipWebApp')
         $scope.$on('$viewContentLoaded', function() {
           $(".button-collapse").sideNav();
           $(".dropdown-button").dropdown();
-          $scope.isLoggedIn = authService.isLoggedIn();
-          $scope.isAdmin = authService.isAdmin();
-          $scope.user = authService.currentUser();
+          $scope.setupUser();
         });
 
         // Login success
         $scope.$on("user.success", function() {
-          $scope.isLoggedIn = authService.isLoggedIn();
-          $scope.isAdmin = authService.isAdmin();
-          $scope.user = authService.currentUser();
+          $scope.setupUser();
         });
 
         // Login success
         $scope.$on("login.success", function() {
-          $scope.isLoggedIn = authService.isLoggedIn();
-          $scope.isAdmin = authService.isAdmin();
-          $scope.user = authService.currentUser();
+          $scope.setupUser();
         });
 
         // Logout success
         $scope.$on("logout.success", function() {
-          $scope.isLoggedIn = authService.isLoggedIn();
-          $scope.isAdmin = authService.isAdmin();
-          $scope.user = authService.currentUser();
+          $scope.setupUser();
           $state.go('home');
           $state.reload();
         });
+
+        $scope.setupUser = function() {
+          $scope.isLoggedIn = authService.isLoggedIn();
+          $scope.isAdmin = authService.isAdmin();
+          $scope.user = authService.currentUser();
+        }
 
         $scope.logout = function() {
           authService.logout();
           $state.go('home');
           $state.reload();
         };
-
-        $scope.children = function () {
-          $state.go('children');
-        };
-
-        $scope.sponsor = function () {
-          $state.go('sponsorChild');
-        };
-
-        $scope.home = function () {
-          $state.go('home');
-        };
-
-        $scope.users = function () {
-          $state.go('users');
-        };
-
-        $scope.userChildren =function () {
-          $state.go('userChildren')
-        }
       }
     };
   });

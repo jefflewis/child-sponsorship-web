@@ -1,38 +1,46 @@
 'use strict';
 
 angular.module('childSponsorshipWebApp')
-  .controller('ChildrenListController', function ($scope, $state, popupService, $window, Child) {
+  .controller('ChildrenListController', function ($scope, $state, $window, Child) {
     // Fetch all children. Issues a GET to /api/children
     $scope.children = Child.query();
     $('.modal-trigger').leanModal();
     $('.materialboxed').materialbox();
-    Materialize.fadeInImage('.img')
 
     $scope.openModal = function (child) {
       $('#modal').openModal();
       $scope.currentChild = child;
+      console.info('child', $scope.currentChild.name);
     };
 
     $scope.closeModal = function () {
       $('#modal').closeModal();
     };
 
+    $scope.deleteObject = function(object) {
+      console.info('child', object.name);
+      var name = object.name;
+      object.$delete(function() {
+        Materialize.toast(name + ' has been deleted', 4000);
+        window.location.reload()
+      });
+    };
+
     $scope.$on('child.deleted', function(e, error) {
       $state.reload();
     });
-
-
   })
   .controller('ChildrenViewController', function ($scope, $stateParams, Child) {
     //Get a single child. Issues a GET to /children/:id
     $scope.child = Child.get({ id: $stateParams.id });
+    $scope.birthdayDate = moment($scope.child.birthdate).format("MMMM Do, YYYY");
+    console.info('child: ', $scope.child);
   })
-  .controller('ChildrenCreateController', function ($scope, $state, popupService, $stateParams, Child, apiService) {
+  .controller('ChildrenCreateController', function ($scope, $state, $stateParams, Child, apiService) {
     $scope.child = new Child();
 
     $scope.$on('$viewContentLoaded', function(){
       $('textarea#description').characterCounter();
-      Materialize.fadeInImage('.img')
     });
 
     $scope.datepicker = function () {
@@ -42,7 +50,7 @@ angular.module('childSponsorshipWebApp')
       });
     };
 
-    $scope.addChild = function() { //create a new child. Issues a POST to /children
+    $scope.addChild = function() {
       $scope.child.$save(function(data) {
         // On success go back to home i.e. children state.
         $state.go('viewChild', {id: data.id});
@@ -57,7 +65,7 @@ angular.module('childSponsorshipWebApp')
 
     $scope.updateChild = function() {
       $scope.child.$update(function() {
-        $state.go('children');
+        $state.go('viewChild', {id: $scope.child.id});
       });
     };
 
@@ -68,11 +76,11 @@ angular.module('childSponsorshipWebApp')
       });
     };
 
-    $scope.loadChild = function() { //Issues a GET request to /api/children/:id to get a child to update
+    $scope.loadChild = function() {
       $scope.child = Child.get({ id: $stateParams.id });
     };
 
-    $scope.loadChild(); // Load a child which can be edited on UI
+    $scope.loadChild();
   })
   .controller('ChildrenPhotosController', function ($scope, $http, $state, $stateParams, Child, FileUploader, apiService) {
     $scope.uploader = new FileUploader(
@@ -192,23 +200,23 @@ angular.module('childSponsorshipWebApp')
     apiService.get('/children/available')
     .success( function (data, status, headers, config) {
       $scope.available = data;
-      Materialize.fadeInImage('.img')
     })
     .error( function(data, status) {
       alert('error: ' + status);
+      Materialize.toast('There was an error retrieving available children: ', data + ' - ' + status);
       $rootScope.$broadcast("children.available.failed", error);
     });
 
     $scope.sponsor = function(child) {
       var user = authService.currentUser();
       var handler = StripeCheckout.configure({
-        image: 'images/default.png',//child.child_photos[0].url,
+        image: 'images/default.png',
         email: user.email,
         token: function(token) {
           apiService.post(('/charge'), {stripeToken: token, child_id: child.id, user_id: user.id })
           .success( function (data, status, headers, config) {
             Materialize.toast(child.name + ' has been sponsored!', 4000);
-            $state.reload();
+            $state.go('userChildren');
           })
           .error( function (data, status) {
             Materialize.toast('Error with payment: ' + data + ' - ' + status, 4000);
@@ -228,4 +236,4 @@ angular.module('childSponsorshipWebApp')
         handler.close();
       });
     };
-  });
+  });;
